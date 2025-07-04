@@ -32,11 +32,9 @@ public class TenantAwareDataSource extends AbstractRoutingDataSource {
     private DataSource createTenantDataSource(TenantInfo tenantInfo) {
         try {
             return DataSourceBuilder.create()
-                    .url("jdbc:mysql://192.168.1.106:3306/" + tenantInfo.getSchema())
-                    .username(tenantInfo.getUserId())
-                    .password(tenantInfo.getPassword())
-                    .driverClassName("com.mysql.cj.jdbc.Driver")
-                    .build();
+					.url("jdbc:mysql://" + tenantInfo.getDbUrl() + "/" + tenantInfo.getSchema())
+					.username(tenantInfo.getUserId()).password(tenantInfo.getPassword())
+					.driverClassName("com.mysql.cj.jdbc.Driver").build();
         } catch (Exception e) {
             throw new RuntimeException("Failed to create DataSource for tenant: " + tenantInfo.getSchema(), e);
         }

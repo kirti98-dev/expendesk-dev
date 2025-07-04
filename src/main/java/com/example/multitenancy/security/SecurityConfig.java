@@ -27,7 +27,7 @@ public class SecurityConfig {
 	@Lazy
     private ClientRepository clientRepository;
 	
-    @Bean
+    
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
     	httpSecurity
         	.cors(cors -> cors.configurationSource(corsConfigurationSource()))
