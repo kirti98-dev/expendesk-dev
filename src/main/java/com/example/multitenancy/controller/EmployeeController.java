@@ -37,6 +37,9 @@ public class EmployeeController {
     @GetMapping("/city")
     public List<City> getCities() {
         TenantInfo tenantInfo = TenantContext.getTenantInfo();
+        if(tenantInfo == null) {
+        	return null;
+        }
         EntityManagerFactory emf = dynamicDataSourceConfig.createEntityManagerFactory(tenantInfo);
         EntityManager em = emf.createEntityManager();
 
